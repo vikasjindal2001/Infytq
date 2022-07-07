@@ -1,0 +1,193 @@
+Linked List
+Vikas Jindal
+1900290120128
+CS 6B
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, PHP, Ruby, 
+C#, VB, Perl, Swift, Prolog, Javascript, Pascal, HTML, CSS, JS
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+#include <stdio.h>
+#include<stdlib.h>
+
+struct node{
+    int data;
+    struct node *next;
+};
+struct node *start=NULL;
+
+void create()
+{
+    struct node *temp;
+    temp=(struct node*)malloc(sizeof(struct node));
+    printf("Enter data\n");
+    scanf("%d",&temp->data);
+    temp->next=NULL;
+    if(start==NULL)
+    {
+        start=temp;
+    }
+    else{
+        struct node *p;
+        p=start;
+        while(p->next!=NULL)
+        {
+            p=p->next;
+        }
+        p->next=temp;
+    }
+}    
+
+
+
+
+
+    void display()
+    {
+        struct node *temp;
+        temp =(struct node*)malloc(sizeof(struct node));
+        temp=start;
+        if(temp==NULL)
+        {
+            printf("list is empty\n");
+            printf("enter elements first\n");
+        }
+        else{
+            printf("Elements are\n");
+            while(temp!=NULL)
+            {
+              printf("%d-->",temp->data);
+              temp=temp->next;
+            }
+            printf("\n\n");
+        }
+    }
+    
+    
+    
+    
+void reverse()
+{
+    struct node *prevnode,*curnode;
+    
+        if(start != NULL)
+        {
+            prevnode = start;
+            curnode = start->next;
+            start = start->next;
+             prevnode->next = NULL;
+            while(start != NULL)
+            {
+                start = start->next;
+                curnode->next = prevnode;
+                prevnode = curnode;
+                curnode = start;
+            }
+            start = prevnode;
+        }
+    printf("\n successfully reverse\n");
+}
+    
+    
+     int length()
+    {
+        struct node *temp;
+        int l=0;
+        temp =(struct node*)malloc(sizeof(struct node));
+        temp=start;
+        if(start==NULL)
+        {
+            printf("list is empty\n");
+            printf("enter elements first\n");
+        }
+        else{
+            while(temp!=NULL)
+            {
+              l++;
+              temp=temp->next;
+            }
+        }
+        printf("\n\nlist length is : %d\n\n",l);
+        return l;
+    }
+
+ 
+ 
+ void deletespecific()
+ {
+     int len;
+ printf("Enter location\n");
+ scanf("%d",&len);
+     struct node *p=start,*q;
+     int i=1;
+     while(i<len-1)
+     {
+         p=p->next;
+         i++;
+     }
+     q=p->next;
+     p->next=q->next;
+     q->next=NULL;
+     free(q);
+     printf("Node at location %d is deleted\n",len);
+ }
+ 
+int main()
+{
+    int m=0,n,k=0;
+   
+    while(1)
+    {
+        printf("1.ENter to add element in a list\n");
+        printf("2.enter to display elements\n");
+        printf("3.enter to length\n");
+        printf("4.enter to Delete at begining\n");
+        printf("5.enter to Delete at specific\n");
+        printf("6.enter to Reverse List\n");
+        printf("7.quit\n");
+        printf("enter option\n");
+        scanf("%d",&m);
+        switch(m){
+            case 1:
+             printf("enter number of nodes you want to add\n");
+    scanf("%d",&n);
+    k=0;
+    while(k<n)
+    {   
+        create();
+        k++;
+    }
+            break;
+            case 2:
+            display();
+            break;
+            case 3:
+            length();
+            break;
+            case 4:
+            deletespecific();
+            break;
+             case 5:
+            deletespecific();
+            break;
+             case 6:
+            reverse();
+            break;
+            case 7:
+            exit(0);
+            break;
+        }
+    
+    }
+    return 0;
+}
+
+
+
+
+
+
+
