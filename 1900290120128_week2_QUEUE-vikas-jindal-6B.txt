@@ -1,0 +1,121 @@
+By Vikas Jindal
+     1900290120128
+     CS 6-B
+     57
+
+#include <stdio.h>
+#include<stdlib.h>
+
+struct node
+{
+ int data;
+ struct node *next;
+};
+struct node *front=NULL;
+struct node *rear=NULL;
+
+void enqueue(int x)
+{
+struct node *temp;
+temp=(struct node *)malloc(sizeof(struct node));
+temp->data=x;
+temp->next=NULL;
+if(front==NULL && rear==NULL)
+{
+front=rear=temp;
+}
+else
+{
+rear->next=temp;
+rear=temp;
+}
+}
+
+void dequeue()
+{
+struct node *p;
+if(front==NULL && rear==NULL)
+{
+printf("The queue is Empty\n");
+}
+else if(front==rear)
+ {
+ front=rear=NULL;
+ }
+else
+{
+printf("The deleted node is %d\n",front->data);
+front=front->next;
+free(p);
+}
+}
+
+
+void display()
+{
+struct node *p;
+if(front==NULL && rear==NULL)
+{
+printf("The queue is Empty\n");
+}
+else
+{
+p=front;
+ while(p!=NULL)
+ {
+ printf("%d-->",p->data);
+ p=p->next;
+ }
+}
+printf("\n");
+}
+
+
+
+void peek()
+{
+if(front==NULL && rear==NULL)
+{
+ printf("The queue is Empty\n");
+}
+else
+{
+printf("the peek of queue is %d",front->data);
+}
+}
+
+int main()
+{
+    int m,x;
+     while(1)
+    {
+        printf("\n\n1.ENter to enqueue element\n");
+        printf("2.enter to display elements\n");
+        printf("3.enter to dequeue\n");
+          printf("4.enter to peak\n");
+        printf("5.quit\n");
+        printf("enter option\n");
+        scanf("%d",&m);
+        switch(m){
+            case 1:
+             printf("enter element to insert\n");
+             scanf("%d",&x);
+             enqueue(x);
+            break;
+            case 2:
+            display();
+            break;
+            case 3:
+            dequeue();
+            break;
+            case 4:
+            peek();
+            break;
+            case 5:
+            exit(0);
+            break;
+        }
+    
+    }
+   return 0;
+}

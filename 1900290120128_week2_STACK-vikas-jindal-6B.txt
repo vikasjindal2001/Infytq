@@ -1,0 +1,103 @@
+By Vikas Jindal
+     1900290120128
+     CS 6-B
+     57
+
+// stack using link
+#include<stdio.h>
+#include<stdlib.h>
+
+int value;
+
+struct Node
+{
+   int data;
+   struct Node *next;
+}*top = NULL;
+
+void push()
+{
+   struct Node *newNode;
+   newNode = (struct Node*)malloc(sizeof(struct Node));
+   newNode->data = value;
+   if(top == NULL)
+      {newNode->next = NULL;
+      top=newNode;}
+   else
+      newNode->next = top;
+   top = newNode;
+   printf("\nInsertion is Success!!!\n");
+}
+
+void pop()
+{
+   if(top == NULL)
+      printf("\nStack is Empty!!!\n");
+   else{
+      struct Node *temp = top;
+      printf("\nDeleted element: %d", temp->data);
+      top = temp->next;
+      free(temp);
+   }
+}
+
+void display()
+{
+   if(top == NULL)
+      printf("\nStack is Empty!!!\n");
+   else
+   {
+      struct Node *temp = top;
+      while(temp->next != NULL)
+      {
+	        printf("%d--->",temp->data);
+	        temp = temp -> next;
+      }
+      printf("%d--->NULL",temp->data);
+   }
+}
+
+int main()
+{
+   int choice;
+   printf("\n:: Stack using Linked List ::\n");
+   do
+   {
+      printf("\n1.push");
+      printf("\n2.pop");
+      printf("\n3.display");
+      printf("\n4.exit");
+      
+      printf("\nEnter your choice: ");
+      scanf("%d",&choice);
+      switch(choice)
+      {	    
+          case 1:
+            {
+                printf("Enter the value to be pushed");
+                scanf("%d",&value);
+                push();
+                break;
+            }
+            case 2:
+            {
+                pop();
+                break;
+            }
+            case 3:
+            {
+                display();
+                break;
+            }
+            case 4:
+            {
+                printf("\n\t EXIT POINT ");
+                break;
+            }
+      }
+   }
+   while(choice!=4);
+   return 0;
+}
+
+
