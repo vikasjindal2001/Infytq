@@ -1,0 +1,57 @@
+By Vikas Jindal
+   1900290120128
+   CS 6-B
+   57
+
+
+
+class Solution {
+public:
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+        vector<int> v;
+        int n=nums1.size(),m=nums2.size(),j=0,i=0;
+        while(i<n && j<m)
+        {
+            if(nums1[i]<nums2[j])
+            {
+                v.push_back(nums1[i]);
+                i++;
+            }
+            else{
+                v.push_back(nums2[j]);
+                j++;
+            }
+        }
+        
+          if(i==n)
+        {
+            while(j<m)
+            {
+                v.push_back(nums2[j]);       
+                j++;
+            }
+        }
+        if(j==m)
+        {
+            while(i<n)
+            {
+                v.push_back(nums1[i]);
+                i++;
+            }
+        }
+        int mid=0;
+        double res;
+        if(v.size()%2==0)
+        {
+            mid=v.size()/2;
+            res=(v[mid-1]+v[mid])/2.0;
+        }
+        else{
+            mid=v.size()/2;
+            res=v[mid];
+        }
+        
+        
+        return res;
+    }
+};
