@@ -1,0 +1,22 @@
+By Vikas Jindal
+     1900290120128
+     CS 6-B
+     57
+
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int n=prices.size(),index,pric=0,profit=INT_MIN;
+        if(prices.size()==1)
+        {
+            return 0;
+        }
+        pric=prices[0];
+        for(int i=1;i<n;i++)
+        {
+            pric=min(pric,prices[i]);
+            profit=max(profit,prices[i]-pric);
+        }
+        return profit;
+    }
+};
